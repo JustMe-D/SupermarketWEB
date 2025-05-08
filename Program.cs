@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using SupermarketWEB.Data;
 
@@ -8,6 +10,15 @@ namespace SupermarketWEB
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configurar la cultura
+            var defaultCulture = new CultureInfo("es-ES");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(defaultCulture),
+                SupportedCultures = new List<CultureInfo> { defaultCulture },
+                SupportedUICultures = new List<CultureInfo> { defaultCulture }
+            };
 
             // Add services to the container.
             builder.Services.AddRazorPages();
@@ -31,6 +42,8 @@ namespace SupermarketWEB
             app.UseRouting();
 
             app.UseAuthorization();
+            //cultura
+            app.UseRequestLocalization(localizationOptions);
 
             app.MapRazorPages();
 
