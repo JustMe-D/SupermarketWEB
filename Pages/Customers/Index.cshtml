@@ -33,7 +33,7 @@
 				<td>@Html.DisplayFor(modelItem => item.phone_number)</td>
 				<td>@Html.DisplayFor(modelItem => item.email)</td>
 				<td>
-					<span></span>
+					<a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
 				</td>
 			</tr>
 		}
