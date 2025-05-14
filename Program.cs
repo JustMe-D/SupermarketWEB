@@ -11,6 +11,9 @@ namespace SupermarketWEB
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Configurar el contexto de la base de datos
+            builder.Services.AddDbContext<SupermarketContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB")));
             // Configurar la cultura
             var defaultCulture = new CultureInfo("es-ES");
             var localizationOptions = new RequestLocalizationOptions
